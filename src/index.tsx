@@ -4,13 +4,21 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import theme from './theme';
-import { ThemeProvider } from '@material-ui/core/styles';
+import {
+  ThemeProvider as MuiThemeProvider,
+  StylesProvider,
+} from '@material-ui/core/styles';
+import { ThemeProvider as StyledComponentsThemeProvider } from 'styled-components';
 
 const element = (
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
+    <StyledComponentsThemeProvider theme={theme}>
+      <MuiThemeProvider theme={theme}>
+        <StylesProvider injectFirst>
+          <App />
+        </StylesProvider>
+      </MuiThemeProvider>
+    </StyledComponentsThemeProvider>
   </React.StrictMode>
 );
 
