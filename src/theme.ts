@@ -5,12 +5,12 @@ const theme = createMuiTheme({
     primary: {
       light: '#aff29d',
       main: '#5adab2',
-      dark: '#0f714e',
+      dark: '#4da986',
     },
     secondary: {
       light: '#aff29d',
       main: '#5adab2',
-      dark: '#0f714e',
+      dark: '#4da986',
     },
   },
 });
