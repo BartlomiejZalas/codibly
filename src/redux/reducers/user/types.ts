@@ -13,4 +13,10 @@ export interface LogoutAction {
   type: UserActionTypes.LOGOUT;
 }
 
-export type UserAction = LoginAction | LogoutAction;
+export interface FetchLoginAction {
+  type: UserActionTypes.FETCH_LOGIN;
+  email: string;
+  password: string;
+}
+
+export type UserAction = LoginAction | LogoutAction | FetchLoginAction;
