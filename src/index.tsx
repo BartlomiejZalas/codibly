@@ -4,18 +4,19 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import theme from './theme';
-import {
-  ThemeProvider as MuiThemeProvider,
-  StylesProvider,
-} from '@material-ui/core/styles';
+import { store } from './redux/store';
+import { ThemeProvider as MuiThemeProvider, StylesProvider } from '@material-ui/core/styles';
 import { ThemeProvider as StyledComponentsThemeProvider } from 'styled-components';
+import { Provider } from 'react-redux';
 
 const element = (
   <React.StrictMode>
     <StyledComponentsThemeProvider theme={theme}>
       <MuiThemeProvider theme={theme}>
-        <StylesProvider injectFirst>
-          <App />
+        <StylesProvider injectFirst={true}>
+          <Provider store={store}>
+            <App />
+          </Provider>
         </StylesProvider>
       </MuiThemeProvider>
     </StyledComponentsThemeProvider>

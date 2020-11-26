@@ -1,7 +1,10 @@
 import { Button, TextField } from '@material-ui/core';
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { useFormik } from 'formik';
+import { login } from '../../redux/reducers/user/actions';
+import { AppDispatch } from '../../redux/store';
 import { LoginFormValues } from './types';
 import { validateLoginForm } from './validation';
 
@@ -25,11 +28,14 @@ const initialValues = {
 };
 
 const LoginForm: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch>();
+
   const formik = useFormik<LoginFormValues>({
     initialValues,
     validate: validateLoginForm,
     onSubmit: (values: LoginFormValues) => {
       formik.setSubmitting(false);
+      dispatch(login(1, values.email));
       console.log(values);
     },
   });
