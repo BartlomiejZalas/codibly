@@ -6,7 +6,7 @@ import { loading, login, loginFailed } from './actions';
 import { UserActionTypes } from './actionTypes';
 import { FetchLoginAction } from './types';
 
-const delay = (ms: number) => new Promise((res: () => void) => setTimeout(res, ms));
+const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
 
 export function* fetchUser(action: FetchLoginAction) {
   const { email, password } = action;

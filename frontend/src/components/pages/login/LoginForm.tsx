@@ -5,10 +5,10 @@ import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { useFormik } from 'formik';
-import { fetchLogin } from '../../redux/reducers/user/actions';
-import { AppDispatch, useTypedSelector } from '../../redux/store';
+import { fetchLogin } from '../../../redux/reducers/user/actions';
+import { AppDispatch, useTypedSelector } from '../../../redux/store';
 import ButtonWithProgress from '../../ui/ButtonWithProgress';
-import { mapCodeToMessage } from '../../utils/errors';
+import { mapCodeToMessage } from '../../../utils/errors';
 import { LoginFormValues } from './types';
 import { validateLoginForm } from './validation';
 

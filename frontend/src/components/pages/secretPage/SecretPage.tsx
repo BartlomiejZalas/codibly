@@ -3,8 +3,8 @@ import { AppBar, Paper, Theme, Toolbar, Typography, Link, Button } from '@materi
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { useUserAuthentication } from '../../hooks/useUserAuthentication';
-import { logout } from '../../redux/reducers/user/actions';
-import { AppDispatch } from '../../redux/store';
+import { logout } from '../../../redux/reducers/user/actions';
+import { AppDispatch } from '../../../redux/store';
 
 const StyledCard = styled(Paper)`
   ${(props: { theme: Theme }) => `

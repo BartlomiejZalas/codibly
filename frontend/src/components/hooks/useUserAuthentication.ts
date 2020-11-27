@@ -1,4 +1,4 @@
-import { useTypedSelector } from '../redux/store';
+import { useTypedSelector } from '../../redux/store';
 
 export const useUserAuthentication = () => {
   const email = useTypedSelector((state) => state.user.email);
