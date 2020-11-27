@@ -1,5 +1,6 @@
 import React from 'react';
 import { TextField, Typography } from '@material-ui/core';
+import { Theme } from '@material-ui/core/styles';
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
@@ -22,11 +23,11 @@ const ButtonContainer = styled.div`
 `;
 
 const ErrorMessage = styled(Typography)`
-  ${({ theme }) => `
-    color: ${theme.palette.common.white};
-    background: ${theme.palette.error.main};
-    margin: ${theme.spacing()}px 0;
-    padding: ${theme.spacing()}px  ${theme.spacing(2)}px;
+  ${(props: { theme: Theme }) => `
+    color: ${props.theme.palette.common.white};
+    background: ${props.theme.palette.error.main};
+    margin: ${props.theme.spacing()}px 0;
+    padding: ${props.theme.spacing()}px  ${props.theme.spacing(2)}px;
     border-radius: 4px;
     font-size: 0.875rem;
     display: flex;
@@ -35,8 +36,8 @@ const ErrorMessage = styled(Typography)`
 `;
 
 const ErrorIcon = styled(ErrorOutlineIcon)`
-  ${({ theme }) => `
-    margin-right: ${theme.spacing(2)}px;
+  ${(props: { theme: Theme }) => `
+    margin-right: ${props.theme.spacing(2)}px;
   `}
 `;
 

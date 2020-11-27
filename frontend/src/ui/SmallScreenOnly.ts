@@ -1,9 +1,10 @@
+import { Theme } from '@material-ui/core';
 import styled from 'styled-components';
 
 export const SmallScreenOnly = styled.div`
-  ${({ theme }) => `
+  ${(props: { theme: Theme }) => `
     display: none;
-    ${theme.breakpoints.up('sm')} {
+    ${props.theme.breakpoints.up('sm')} {
       display: block;
     }
   `}
