@@ -1,0 +1,56 @@
+Arguments: 
+  /home/baza/.nvm/versions/node/v12.14.1/bin/node /usr/share/yarn/bin/yarn.js install
+
+PATH: 
+  /home/baza/.nvm/versions/node/v12.14.1/bin:/home/baza/Projects2/codibly/node_modules/.bin:/home/baza/Tools/apache-maven-3.6.1-bin/apache-maven-3.6.1/bin/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+
+Yarn version: 
+  1.21.1
+
+Node version: 
+  12.14.1
+
+Platform: 
+  linux x64
+
+Trace: 
+  SyntaxError: /home/baza/Projects2/codibly/backend/package.json: Unexpected token } in JSON at position 436
+      at JSON.parse (<anonymous>)
+      at /usr/share/yarn/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/usr/share/yarn/lib/cli.js:310:30)
+      at /usr/share/yarn/lib/cli.js:321:13
+
+npm manifest: 
+  {
+    "name": "consumption-service",
+    "version": "1.0.0",
+    "description": "Node service",
+    "repository": "https://github.com/madoranges/ekodowcy",
+    "main": "src/index.js",
+    "scripts": {
+      "dev": "nodemon src/index.ts",
+      "build": "tsc --project ./",
+      "start-prod": "node ./build/index.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "body-parser": "^1.19.0",
+      "express": "^4.17.1",
+    },
+    "devDependencies": {
+      "@types/express": "^4.17.8",
+      "@types/node": "^14.11.5",
+      "nodemon": "^2.0.4",
+      "ts-node": "^9.0.0",
+      "typescript": "^4.0.3"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
