@@ -1,10 +1,13 @@
-import { Button, TextField } from '@material-ui/core';
 import React from 'react';
+import { TextField, Typography } from '@material-ui/core';
+import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { useFormik } from 'formik';
 import { fetchLogin } from '../../redux/reducers/user/actions';
-import { AppDispatch } from '../../redux/store';
+import { AppDispatch, useTypedSelector } from '../../redux/store';
+import ButtonWithProgress from '../../ui/ButtonWithProgress';
+import { mapCodeToMessage } from '../../utils/errors';
 import { LoginFormValues } from './types';
 import { validateLoginForm } from './validation';
 
@@ -13,12 +16,27 @@ const Form = styled.div`
   flex-direction: column;
 `;
 
-const StyledButton = styled(Button)`
+const ButtonContainer = styled.div`
+  width: 50%;
+  margin: auto;
+`;
+
+const ErrorMessage = styled(Typography)`
   ${({ theme }) => `
-    margin-top: ${theme.spacing(2)}px;
-    margin-bottom: ${theme.spacing(2)}px;
-    align-self: center;
-    width: 50%;
+    color: ${theme.palette.common.white};
+    background: ${theme.palette.error.main};
+    margin: ${theme.spacing()}px 0;
+    padding: ${theme.spacing()}px  ${theme.spacing(2)}px;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+  `}
+`;
+
+const ErrorIcon = styled(ErrorOutlineIcon)`
+  ${({ theme }) => `
+    margin-right: ${theme.spacing(2)}px;
   `}
 `;
 
@@ -29,13 +47,14 @@ const initialValues = {
 
 const LoginForm: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const errorCode = useTypedSelector((state) => state.user.loginErrorCode);
+  const isLoading = useTypedSelector((state) => state.user.isLoading);
 
   const formik = useFormik<LoginFormValues>({
     initialValues,
     validate: validateLoginForm,
-    onSubmit: async (values: LoginFormValues) => {
-      dispatch(fetchLogin(values.email, values.password));
-      formik.setSubmitting(false);
+    onSubmit: ({ email, password }) => {
+      dispatch(fetchLogin(email, password));
     },
   });
 
@@ -44,6 +63,12 @@ const LoginForm: React.FC = () => {
 
   return (
     <Form>
+      {errorCode && (
+        <ErrorMessage>
+          <ErrorIcon fontSize="small" />
+          {mapCodeToMessage(errorCode)}
+        </ErrorMessage>
+      )}
       <TextField
         label="Email"
         name="email"
@@ -69,14 +94,18 @@ const LoginForm: React.FC = () => {
         error={passwordHasError}
         helperText={passwordHasError && formik.errors.password}
       />
-      <StyledButton
-        variant="contained"
-        color="primary"
-        onClick={() => formik.handleSubmit()}
-        disabled={!formik.values.password || !formik.values.email || formik.isSubmitting}
-      >
-        Login
-      </StyledButton>
+      <ButtonContainer>
+        {formik.isSubmitting}
+        <ButtonWithProgress
+          variant="contained"
+          color="primary"
+          onClick={() => formik.handleSubmit()}
+          disabled={!formik.isValid || !formik.values.email}
+          isLoading={isLoading}
+        >
+          Login
+        </ButtonWithProgress>
+      </ButtonContainer>
     </Form>
   );
 };

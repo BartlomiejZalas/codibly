@@ -4,6 +4,8 @@ import { UserAction, UserState } from './types';
 export const initialUserState = {
   userId: null,
   email: null,
+  loginErrorCode: null,
+  isLoading: false,
 };
 
 const userReducer = (state: UserState = initialUserState, action: UserAction): UserState => {
@@ -14,6 +16,13 @@ const userReducer = (state: UserState = initialUserState, action: UserAction): U
         ...state,
         userId,
         email,
+        loginErrorCode: null,
+      };
+    }
+    case UserActionTypes.LOGIN_ERROR: {
+      return {
+        ...state,
+        loginErrorCode: action.errorCode,
       };
     }
     case UserActionTypes.LOGOUT: {
@@ -21,6 +30,13 @@ const userReducer = (state: UserState = initialUserState, action: UserAction): U
         ...state,
         userId: null,
         email: null,
+        loginErrorCode: null,
+      };
+    }
+    case UserActionTypes.LOADING: {
+      return {
+        ...state,
+        isLoading: action.isLoading,
       };
     }
     default:
