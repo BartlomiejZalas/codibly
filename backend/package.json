@@ -1,8 +1,7 @@
 {
-  "name": "consumption-service",
+  "name": "dummybackend",
   "version": "1.0.0",
   "description": "Node service",
-  "repository": "https://github.com/madoranges/ekodowcy",
   "main": "src/index.js",
   "scripts": {
     "dev": "nodemon src/index.ts",
