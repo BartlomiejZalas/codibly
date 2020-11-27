@@ -26,7 +26,7 @@ app.post('/login', (req: Request<{}, {}, LoginRequestBody>, res: Response) => {
     }
 
     if (req.body.email === EMAIL && req.body.password === PASSWORD) {
-        res.sendStatus(200);
+        res.json({userId: 1, email: req.body.email}).send(200);
         return;
     }
 
