@@ -2,7 +2,7 @@ import { Theme, Typography } from '@material-ui/core';
 import React from 'react';
 import styled from 'styled-components';
 import energy from '../../assets/energy.jpg';
-import { SmallScreenOnly } from '../../ui/SmallScreenOnly';
+import { BigScreenOnly } from '../../ui/BigScreenOnly';
 import LoginForm from './LoginForm';
 
 const Background = styled.div`
@@ -41,10 +41,10 @@ export const LoginPage: React.FC = () => {
         <Typography variant="h3" gutterBottom={true}>
           Login
         </Typography>
-        <SmallScreenOnly>
+        <BigScreenOnly>
           <Typography color="textSecondary">Welcome to example website.</Typography>
           <Typography color="textSecondary">Please login:</Typography>
-        </SmallScreenOnly>
+        </BigScreenOnly>
         <LoginForm />
       </Container>
     </Background>
