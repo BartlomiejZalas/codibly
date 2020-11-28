@@ -98,7 +98,6 @@ const LoginForm: React.FC = () => {
         helperText={passwordHasError && formik.errors.password}
       />
       <ButtonContainer>
-        {formik.isSubmitting}
         <ButtonWithProgress
           variant="contained"
           color="primary"
