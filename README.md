@@ -2,7 +2,7 @@
 
 ## What it contains
 
-The project consist of 3 modules:
+The project consists of 3 modules:
 
 - `backend` - dummy backend app written in node/express
 - `frontend` - react app written in Styled Components and Redux Saga
