@@ -1,9 +1,7 @@
 import React from 'react';
-import { TextField, Typography } from '@material-ui/core';
-import { Theme } from '@material-ui/core/styles';
+import { styled, TextField, Typography, withStyles } from '@material-ui/core';
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import { useDispatch } from 'react-redux';
-import styled from 'styled-components';
 import { useFormik } from 'formik';
 import { fetchLogin } from '../../../redux/reducers/user/actions';
 import { AppDispatch, useTypedSelector } from '../../../redux/store';
@@ -12,34 +10,34 @@ import { mapCodeToMessage } from '../../../utils/errors';
 import { LoginFormValues } from './types';
 import { validateLoginForm } from './validation';
 
-const Form = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
+const Form = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+});
 
-const ButtonContainer = styled.div`
-  width: 50%;
-  margin: auto;
-`;
+const ButtonContainer = styled('div')({
+  width: '50%',
+  margin: 'auto',
+});
 
-const ErrorMessage = styled(Typography)`
-  ${(props: { theme: Theme }) => `
-    color: ${props.theme.palette.common.white};
-    background: ${props.theme.palette.error.main};
-    margin: ${props.theme.spacing()}px 0;
-    padding: ${props.theme.spacing()}px  ${props.theme.spacing(2)}px;
-    border-radius: 4px;
-    font-size: 0.875rem;
-    display: flex;
-    align-items: center;
-  `}
-`;
+const ErrorMessage = withStyles((theme) => ({
+  root: {
+    color: theme.palette.common.white,
+    background: theme.palette.error.main,
+    margin: theme.spacing(1, 0),
+    padding: theme.spacing(1, 2),
+    borderRadius: 4,
+    fontSize: '0.875rem',
+    display: 'flex',
+    alignItems: 'center',
+  },
+}))(Typography);
 
-const ErrorIcon = styled(ErrorOutlineIcon)`
-  ${(props: { theme: Theme }) => `
-    margin-right: ${props.theme.spacing(2)}px;
-  `}
-`;
+const ErrorIcon = withStyles((theme) => ({
+  root: {
+    marginRight: theme.spacing(2),
+  },
+}))(ErrorOutlineIcon);
 
 const initialValues = {
   email: '',

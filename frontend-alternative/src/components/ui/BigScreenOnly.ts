@@ -1,11 +1,8 @@
-import { Theme } from '@material-ui/core';
-import styled from 'styled-components';
+import { styled } from '@material-ui/core';
 
-export const BigScreenOnly = styled.div`
-  ${(props: { theme: Theme }) => `
-    display: none;
-    ${props.theme.breakpoints.up('sm')} {
-      display: block;
-    }
-  `}
-`;
+export const BigScreenOnly = styled('div')(({ theme }) => ({
+  display: 'none',
+  [theme.breakpoints.up('sm')]: {
+    display: 'block',
+  },
+}));

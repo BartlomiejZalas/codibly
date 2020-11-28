@@ -3,7 +3,6 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import { ThemeProvider as StyledComponentsThemeProvider } from 'styled-components';
 import theme from '../../components/theme';
 import { rootReducer, userSaga } from '../../redux/reducers';
 
@@ -15,9 +14,7 @@ export class TestWrapperBuilder {
 
   public withThemeProvider() {
     this.themeProvider = ({ children }) => (
-      <StyledComponentsThemeProvider theme={theme}>
-        <MuiThemeProvider theme={theme}>{children}</MuiThemeProvider>
-      </StyledComponentsThemeProvider>
+      <MuiThemeProvider theme={theme}>{children}</MuiThemeProvider>
     );
     return this;
   }
