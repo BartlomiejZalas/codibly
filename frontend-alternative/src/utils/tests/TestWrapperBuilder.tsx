@@ -1,10 +1,7 @@
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/styles';
 import React from 'react';
-import { Provider } from 'react-redux';
-import { applyMiddleware, createStore } from 'redux';
-import createSagaMiddleware from 'redux-saga';
 import theme from '../../components/theme';
-import { rootReducer, userSaga } from '../../redux/reducers';
+import { UserStoreContextProvider } from '../../stores/user/userStoreContext';
 
 const EmptyProvider: React.FC = ({ children }) => <>{children}</>;
 
@@ -20,10 +17,9 @@ export class TestWrapperBuilder {
   }
 
   public withStoreProvider() {
-    const sagaMiddleware = createSagaMiddleware();
-    const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
-    sagaMiddleware.run(userSaga);
-    this.storeProvider = ({ children }) => <Provider store={store}>{children}</Provider>;
+    this.storeProvider = ({ children }) => (
+      <UserStoreContextProvider>{children}</UserStoreContextProvider>
+    );
     return this;
   }
 

@@ -1,16 +1,17 @@
-import React from 'react';
-import { useUserAuthentication } from '../hooks/useUserAuthentication';
+import React, { useContext } from 'react';
+import { observer } from 'mobx-react-lite';
+import { UserStoreContext } from '../../stores/user/userStoreContext';
 import { LoginPage } from './login';
 import { SecretPage } from './secretPage';
 
 function App() {
-  const { isLogged } = useUserAuthentication();
+  const { isLogged } = useContext(UserStoreContext);
 
-  if (isLogged) {
+  if (isLogged()) {
     return <SecretPage />;
   } else {
     return <LoginPage />;
   }
 }
 
-export default App;
+export default observer(App);

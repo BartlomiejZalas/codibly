@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
+import useIsMounted from 'ismounted';
 import { styled, TextField, Typography, withStyles } from '@material-ui/core';
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
-import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
-import { fetchLogin } from '../../../redux/reducers/user/actions';
-import { AppDispatch, useTypedSelector } from '../../../redux/store';
+import { ErrorCode } from '../../../constants/errorCodes';
+import { UserStoreContext } from '../../../stores/user/userStoreContext';
 import ButtonWithProgress from '../../ui/ButtonWithProgress';
-import { mapCodeToMessage } from '../../../utils/errors';
+import { mapCodeToMessage, mapToErrorCode } from '../../../utils/errors';
 import { LoginFormValues } from './types';
 import { validateLoginForm } from './validation';
 
@@ -45,16 +45,27 @@ const initialValues = {
 };
 
 const LoginForm: React.FC = () => {
-  const dispatch = useDispatch<AppDispatch>();
-  const errorCode = useTypedSelector((state) => state.user.loginErrorCode);
-  const isLoading = useTypedSelector((state) => state.user.isLoading);
+  const userStore = useContext(UserStoreContext);
+  const [errorCode, setErrorCode] = useState<ErrorCode | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const isMounted = useIsMounted();
+
+  const onSubmit = async ({ email, password }: LoginFormValues) => {
+    setIsLoading(true);
+    try {
+      await userStore.login(email, password);
+    } catch (e) {
+      setErrorCode(mapToErrorCode(e));
+    }
+    if (isMounted.current) {
+      setIsLoading(false);
+    }
+  };
 
   const formik = useFormik<LoginFormValues>({
     initialValues,
     validate: validateLoginForm,
-    onSubmit: ({ email, password }) => {
-      dispatch(fetchLogin(email, password));
-    },
+    onSubmit,
   });
 
   const emailHasError = formik.touched.email && !!formik.errors.email;
@@ -96,7 +107,6 @@ const LoginForm: React.FC = () => {
         helperText={passwordHasError && formik.errors.password}
       />
       <ButtonContainer>
-        {formik.isSubmitting}
         <ButtonWithProgress
           variant="contained"
           color="primary"

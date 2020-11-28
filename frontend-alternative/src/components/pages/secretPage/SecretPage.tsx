@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   AppBar,
   Paper,
@@ -10,10 +10,7 @@ import {
   withStyles,
 } from '@material-ui/core';
 import PowerSettingsNewOutlinedIcon from '@material-ui/icons/PowerSettingsNewOutlined';
-import { useDispatch } from 'react-redux';
-import { useUserAuthentication } from '../../hooks/useUserAuthentication';
-import { logout } from '../../../redux/reducers/user/actions';
-import { AppDispatch } from '../../../redux/store';
+import { UserStoreContext } from '../../../stores/user/userStoreContext';
 
 const StyledCard = withStyles((theme: Theme) => ({
   root: {
@@ -29,15 +26,14 @@ const FullText = withStyles({
 })(Typography);
 
 export const SecretPage: React.FC = () => {
-  const { email } = useUserAuthentication();
-  const dispatch = useDispatch<AppDispatch>();
+  const { email, logout } = useContext(UserStoreContext);
 
   return (
     <>
       <AppBar position="static">
         <Toolbar>
           <FullText variant="h6">Secret Page</FullText>
-          <Button color="inherit" onClick={() => dispatch(logout())}>
+          <Button color="inherit" onClick={() => logout()}>
             <PowerSettingsNewOutlinedIcon />
             &nbsp;Logout
           </Button>
@@ -52,7 +48,7 @@ export const SecretPage: React.FC = () => {
         </Typography>
         <Typography gutterBottom={true}>
           You can now{' '}
-          <Link href="#" onClick={() => dispatch(logout())}>
+          <Link href="#" onClick={() => logout()}>
             logout
           </Link>
           .

@@ -16,6 +16,10 @@
     "@types/react-dom": "^16.9.8",
     "axios": "^0.21.0",
     "formik": "^2.2.5",
+    "ismounted": "^0.1.8",
+    "mobx": "^6.0.4",
+    "mobx-react-lite": "^3.1.6",
+    "mobx-state-tree": "^4.0.2",
     "nock": "^13.0.5",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -39,7 +43,9 @@
       "!<rootDir>/node_modules/",
       "!<rootDir>/build/"
     ],
-    "coverageReporters": ["text"]
+    "coverageReporters": [
+      "text"
+    ]
   },
   "eslintConfig": {
     "extends": [
