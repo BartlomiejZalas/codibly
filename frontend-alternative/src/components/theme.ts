@@ -3,14 +3,14 @@ const theme = createMuiTheme({
   palette: {
     type: 'light',
     primary: {
-      light: '#aff29d',
-      main: '#5adab2',
-      dark: '#4da986',
+      light: '#f78363',
+      main: '#da6f5a',
+      dark: '#c35646',
     },
     secondary: {
-      light: '#aff29d',
-      main: '#5adab2',
-      dark: '#4da986',
+      light: '#f78363',
+      main: '#da6f5a',
+      dark: '#c35646',
     },
   },
 });
