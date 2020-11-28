@@ -14,6 +14,6 @@ RUN yarn install
 RUN yarn run build
 RUN yarn global add serve
 
-EXPOSE 5000
+EXPOSE 5001
 
-CMD ["serve", "-s", "build"]
+CMD ["serve", "-l", "5001", "-s", "build"]
