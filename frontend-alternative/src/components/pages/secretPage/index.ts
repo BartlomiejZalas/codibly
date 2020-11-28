@@ -1,0 +1,1 @@
+export { SecretPage } from './SecretPage';
