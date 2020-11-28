@@ -71,6 +71,7 @@ const LoginForm: React.FC = () => {
         </ErrorMessage>
       )}
       <TextField
+        id="email"
         label="Email"
         name="email"
         variant="outlined"
@@ -83,6 +84,7 @@ const LoginForm: React.FC = () => {
         helperText={emailHasError && formik.errors.email}
       />
       <TextField
+        id="password"
         label="Password"
         name="password"
         variant="outlined"
@@ -103,6 +105,7 @@ const LoginForm: React.FC = () => {
           onClick={() => formik.handleSubmit()}
           disabled={!formik.isValid || !formik.values.email}
           isLoading={isLoading}
+          data-testid="login--submit-btn"
         >
           Login
         </ButtonWithProgress>
