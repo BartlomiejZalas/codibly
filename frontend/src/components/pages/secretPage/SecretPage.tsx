@@ -1,5 +1,6 @@
 import React from 'react';
 import { AppBar, Paper, Theme, Toolbar, Typography, Link, Button } from '@material-ui/core';
+import PowerSettingsNewOutlinedIcon from '@material-ui/icons/PowerSettingsNewOutlined';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { useUserAuthentication } from '../../hooks/useUserAuthentication';
@@ -27,7 +28,8 @@ export const SecretPage: React.FC = () => {
         <Toolbar>
           <FullText variant="h6">Secret Page</FullText>
           <Button color="inherit" onClick={() => dispatch(logout())}>
-            Logout
+            <PowerSettingsNewOutlinedIcon />
+            &nbsp;Logout
           </Button>
         </Toolbar>
       </AppBar>
